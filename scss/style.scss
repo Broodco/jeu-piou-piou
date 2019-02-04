@@ -1,0 +1,10 @@
+body {
+    height : 700px;
+    min-height: 600px;
+    width: 900px;
+    min-width: 800px;
+    overflow: hidden;
+}
+#spaceship, #alien, #shots{
+    display:none;
+}

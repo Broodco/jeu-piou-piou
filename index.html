@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="scripts/script.js"></script>
+    <script>
+        window.onload = () => {
+            startGame();
+        }
+    </script>
     <link rel="stylesheet" href="css/style.css">
-    <title></title>
+    <title>Space Shooter</title>
 </head>
 <body>
-    <canvas id="pewpew" width=80vw height=80vh>Dommage, votre navigateur ne peut pas afficher canvas.</canvas>
+    <img src="public/vectors/spaceship.svg" id="spaceship"/>
+    <img src="public/vectors/alien.svg" id="alien"/>
+    <img src="public/vectors/laser_shots.svg"id="shots"/>
 </body>
 </html>
