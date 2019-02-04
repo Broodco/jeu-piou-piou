@@ -3,21 +3,26 @@
 // Also initialize shotexist, numshot et shotsfired, variables needed to create shots
 
 function startGame(){
+    document.querySelector(".replay").style.display="none";
     document.querySelector(".splashScreen").style.display = "none";
     document.querySelector(".area").style.display = "block";
     gameArea.createCanvas();
+    document.querySelector("canvas").style.display = "block";
     gameArea.start();
     shotexist = false;
     targetsCount = 0;
     numshot = 0;
     shotsfired = [];
-    reload = 50;
+    reload = 20;
+    myScore = new scoreComp("30px", 'Cabin', white, 280, 40);
     spaceship = new drawcomp(document.querySelector("#spaceship"),300,450,200,200);
     alien = new drawcomp(document.querySelector('#alien'),getRandomPosition()[0],getRandomPosition()[1],120,120);
 }
 
 function endGame(){
-
+    document.querySelector("canvas").style.display = "none";
+    document.querySelector(".replay").style.display = "flex";
+    document.querySelector("#replayBtn").addEventListener("click",startGame);
 }
 
 // Create the canvas into the html body
@@ -106,7 +111,7 @@ function drawshots(){
     this.x = xpos;
     this.y = 480;
     this.speedX = 0;
-    this.speedY = -10;
+    this.speedY = -25;
     this.width = 200;
     this.height = 25.86;
 }
@@ -120,6 +125,21 @@ drawshots.prototype.update = function(){
     ctx.drawImage(this.src,this.x,this.y,this.width,this.height);
 }
 
+// Creates a score components tracking the timing
+
+function scoreComp(width, height, color, x, y){
+    this.type = "text";
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.font = this.width + " " + this.height;
+        ctx.fillStyle = color;
+        ctx.fillText(this.text, this.x, this.y);}
+    }
+
 // Updates the game every 20ms
 
 function updateGameArea(){
@@ -130,14 +150,14 @@ function updateGameArea(){
         gameArea.stop();
         endGame();
     }
-    if (gameArea.keys && gameArea.keys[37]){spaceship.speedX = -6}
-    if (gameArea.keys && gameArea.keys[39]){spaceship.speedX = 6;}
+    if (gameArea.keys && gameArea.keys[37]){spaceship.speedX = -10}
+    if (gameArea.keys && gameArea.keys[39]){spaceship.speedX = 10;}
     // Next block creates a laser shot if the reload time is under 0
     // Each shot is part of an array named shotsfired, this way we can have multiple shots on screen at the same time
     if (gameArea.keys && gameArea.keys[32] && reload <= 0){
         shotsfired = new drawshots();
         shotexist = true;
-        reload = 50;
+        reload = 20;
     }
     spaceship.newPos();
     spaceship.update();
