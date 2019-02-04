@@ -4,18 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="scripts/navbar.js"></script>
     <script src="scripts/script.js"></script>
     <script>
         window.onload = () => {
-            startGame();
+            document.querySelector("#startBtn").addEventListener("click",startGame)
         }
     </script>
     <link rel="stylesheet" href="css/style.css">
     <title>Space Shooter</title>
 </head>
 <body>
-    <img src="public/vectors/spaceship.svg" id="spaceship"/>
-    <img src="public/vectors/alien.svg" id="alien"/>
-    <img src="public/vectors/laser_shots.svg"id="shots"/>
+    <header class="fixe">
+        <ul class="horiz">
+            <li onclick="location.href='https://broodco.github.io/index.html';">Homepage</li>
+            <li onclick="location.href='https://broodco.github.io/404.html';">My 404 Page</li>
+            <li onclick="showdropdown('dropdown-a')" class="dropdown"> Exercises
+                <div id="dropdown-a" class="dropdown-content">
+                    <a href="https://broodco.github.io/starwars.html">Star Wars Crawl</a>
+                    <a href="https://broodco.github.io/tim.html">Tim Berners-Lee</a>
+                    <a href="https://broodco.github.io/cv.html">My CV</a>
+                </div>
+            </li>
+            <li onclick="showdropdown('dropdown-b')" class="dropdown"> Contact
+                <div id="dropdown-b" class="dropdown-content">
+                    <a href="https://github.com/broodco">My GitHub Profile</a>
+                    <a href="https://linkedin.com/broodco">My LinkedIn</a>
+                </div>
+            </li>
+        </ul>
+        <div onclick="showdropdown('nav_small')" class="burger"><img id="burgerIcon" src="resources/iconfinder_menu-alt_134216.svg"/></div>
+    </header>
+    <nav id="responsive">
+        <ul class="vert">
+            <li onclick="location.href='https://broodco.github.io/cv.html';">My CV</li>
+            <li onclick="location.href='https://broodco.github.io/404.html';">My 404 Page</li>
+            <li onclick="showdropdown('dropdown-c')" class="dropdown"> Exercises
+                <div id="dropdown-c" class="dropdown-content">
+                    <a href="https://broodco.github.io/starwars.html">Star Wars Crawl</a>
+                    <a href="https://broodco.github.io/tim.html">Tim Berners-Lee</a>
+                </div>
+            </li>
+            <li onclick="showdropdown('dropdown-d')" class="dropdown"> Contact
+                <div id="dropdown-d" class="dropdown-content">
+                    <a href="https://github.com/broodco">My GitHub Profile</a>
+                    <a href="https://linkedin.com/broodco">My LinkedIn</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <img src="public/vectors/spaceship.svg" id="spaceship"/>
+        <img src="public/vectors/alien.svg" id="alien"/>
+        <img src="public/vectors/laser_shots.svg"id="shots"/>
+        <div class="area">
+            <div class="splashScreen">
+                <h1>Space Shooter - Piou piou edition</h1>
+                <input id="startBtn" type="button" value="Start"/>
+            </div>
+        </div>
+    </main>
 </body>
-</html>
+</html> 
