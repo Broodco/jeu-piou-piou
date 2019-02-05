@@ -42,7 +42,14 @@ function endGame(){
             ul.appendChild(li);
         }
     }
-    document.querySelector("#replayBtn").addEventListener("click",startGame);
+    document.querySelector("#replayBtn").removeEventListener("click",startGame);
+    replay()
+}
+
+function replay(){
+    setTimeout(function(){
+        document.querySelector("#replayBtn").addEventListener("click",startGame);
+    }, 1500);    
 }
 
 // Create the canvas into the html body
@@ -182,8 +189,8 @@ function updateGameArea(){
         gameArea.stop();
         endGame();
     }
-    if (gameArea.keys && gameArea.keys[37]){spaceship.speedX = -10}
-    if (gameArea.keys && gameArea.keys[39]){spaceship.speedX = 10;}
+    if (gameArea.keys && gameArea.keys[37]){spaceship.speedX = -12}
+    if (gameArea.keys && gameArea.keys[39]){spaceship.speedX = 12;}
     // Next block creates a laser shot if the reload time is under 0
     // Each shot is part of an array named shotsfired, this way we can have multiple shots on screen at the same time
     if (gameArea.keys && gameArea.keys[32] && reload <= 0){
@@ -221,9 +228,9 @@ function updateGameArea(){
 function orderScores(){
     for (i=0 ; i<bestScores.length;i++){
         if (bestScores[i] < 10){
-            bestScores[i] = ("0"+String(bestScores[i])).slice(-4);
+            bestScores[i] = ("0"+String(bestScores[i])).slice(-5);
         } else{
-            bestScores[i]=String(bestScores[i]).slice(-4);
+            bestScores[i]=String(bestScores[i]).slice(-5);
         }
     }
     bestScores.sort();
