@@ -1,3 +1,5 @@
+var bestScores = [];
+
 // Starts the game
 // Creates the player shaceship and the first target
 // Also initialize shotexist, numshot et shotsfired, variables needed to create shots
@@ -7,6 +9,7 @@ function startGame(){
     document.querySelector(".splashScreen").style.display = "none";
     document.querySelector(".area").style.display = "block";
     gameArea.createCanvas();
+    startTime = new Date();
     document.querySelector("canvas").style.display = "block";
     gameArea.start();
     shotexist = false;
@@ -14,7 +17,8 @@ function startGame(){
     numshot = 0;
     shotsfired = [];
     reload = 20;
-    myScore = new scoreComp("30px", 'Cabin', white, 280, 40);
+    myTimer = new textComp("30px", 'AtarianSystemExtended', 'white', 700, 40);
+    myScore = new textComp("30px", "AtarianSystemExtended", "white",20, 40);
     spaceship = new drawcomp(document.querySelector("#spaceship"),300,450,200,200);
     alien = new drawcomp(document.querySelector('#alien'),getRandomPosition()[0],getRandomPosition()[1],120,120);
 }
@@ -22,6 +26,22 @@ function startGame(){
 function endGame(){
     document.querySelector("canvas").style.display = "none";
     document.querySelector(".replay").style.display = "flex";
+    document.querySelector("#score").innerHTML ="Your score : "+ String(endTimer) + " seconds";
+    ul = document.querySelector("#classment");
+    ul.innerHTML="";
+    if (bestScores.length < 4){
+        for (i=0; i<bestScores.length;i++){
+            li = document.createElement("li");
+            li.appendChild(document.createTextNode(bestScores[i]+" seconds"));
+            ul.appendChild(li);
+        }
+    } else if (bestScores.length >= 4){
+        for (i=0 ; i< 4 ; i++){
+            li = document.createElement("li");
+            li.appendChild(document.createTextNode(bestScores[i]+" seconds"));
+            ul.appendChild(li);
+        }
+    }
     document.querySelector("#replayBtn").addEventListener("click",startGame);
 }
 
@@ -125,28 +145,40 @@ drawshots.prototype.update = function(){
     ctx.drawImage(this.src,this.x,this.y,this.width,this.height);
 }
 
-// Creates a score components tracking the timing
+// Constructor to create a text element
+// Used for the score and the timer
 
-function scoreComp(width, height, color, x, y){
+function textComp(width, height, color, x, y){
     this.type = "text";
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
     this.update = function() {
-        ctx = myGameArea.context;
+        ctx = gameArea.context;
         ctx.font = this.width + " " + this.height;
         ctx.fillStyle = color;
         ctx.fillText(this.text, this.x, this.y);}
     }
 
+function timer(){
+    var elapsed=parseFloat((new Date() - startTime)/1000).toFixed(2);
+    return elapsed
+}
 // Updates the game every 20ms
 
 function updateGameArea(){
     gameArea.clear();
+    myTimer.text = timer();
+    myScore.text = "Remaining targets : " + String(10 - targetsCount);
+    myTimer.update();
+    myScore.update();
     spaceship.speedX = 0;
     reload--;
     if (targetsCount == 10){
+        endTimer = parseFloat((new Date()-startTime)/1000).toFixed(2);
+        bestScores.push(endTimer);
+        orderScores();
         gameArea.stop();
         endGame();
     }
@@ -184,3 +216,15 @@ function updateGameArea(){
     }
 }
 
+// Order the bestScore Array
+
+function orderScores(){
+    for (i=0 ; i<bestScores.length;i++){
+        if (bestScores[i] < 10){
+            bestScores[i] = ("0"+String(bestScores[i])).slice(-4);
+        } else{
+            bestScores[i]=String(bestScores[i]).slice(-4);
+        }
+    }
+    bestScores.sort();
+}

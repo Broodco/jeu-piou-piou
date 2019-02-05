@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin|Raleway:300i');
+@font-face{
+    font-family: 'AtarianSystemExtended';
+    src : url("../public/fonts/sf-atarian-system/Atarian/SF\ Atarian\ System\ Extended.ttf");
+}
+
 
 *{
     margin : 0;
@@ -26,6 +31,7 @@ body{
     min-width: 900px;
     background: rgb(230, 230, 230);
     .fixe{
+        font-family: 'Cabin',Arial, Helvetica, sans-serif;
         width:100%;
         height: 100px;
         background-color:var(--color-6);
@@ -64,6 +70,7 @@ body{
         }
     }
     main{
+        font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
         margin-top: 1em;
         min-height: 600px;
         min-width: 800px;
@@ -85,8 +92,8 @@ body{
                 align-items: center; 
                 h1{
                     color: var(--color-3);
+                    font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
                     text-align:center;
-                    font-family: 'Cabin', Arial, Helvetica, sans-serif;
                     border: 1px solid var(--color-1);
                     padding : 0.5em;
                     border-radius: 4px;
@@ -96,9 +103,9 @@ body{
                     font-size: 20px;
                     padding : 1em 2em;
                     cursor:pointer;
-                    font-family:'Cabin',Arial, Helvetica, sans-serif;
                     font-weight:bold;
                     margin-bottom : 2em;
+                    font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
                 }
                 .infos{
                     color: var(--color-3);
@@ -110,6 +117,8 @@ body{
                             list-style: none;
                             font-size: 20px;
                             padding: 0.2em;
+                            font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
+
                         }
                     }
                 }
@@ -122,23 +131,31 @@ body{
                 flex-direction: column;
                 justify-content: center;
                 align-items: center; 
-                h1{
+                h1, h2{
                     color: var(--color-3);
                     text-align:center;
-                    font-family: 'Cabin', Arial, Helvetica, sans-serif;
                     border: 1px solid var(--color-1);
                     padding : 0.5em;
                     border-radius: 4px;
                     margin-bottom :1em;
+                    font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
                 } 
-                #startBtn{
+                #replayBtn{
                     font-size: 20px;
                     padding : 1em 2em;
                     cursor:pointer;
-                    font-family:'Cabin',Arial, Helvetica, sans-serif;
                     font-weight:bold;
-                    margin-bottom : 2em;
+                    margin-bottom : 2em; 
+                    font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
                 }
+                ul{
+                    li{
+                        list-style: none;
+                        color : white;
+                        font-family: 'AtarianSystemExtended',"Cabin",Arial, Helvetica, sans-serif;
+
+                    }
+                }   
             }
         }
     }
